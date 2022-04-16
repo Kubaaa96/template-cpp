@@ -1,5 +1,5 @@
-#include <iostream>
+#include <fmt/core.h>
 
 int main(){
-    std::cout << "Main\n";
+    fmt::print("Main\n");
 }

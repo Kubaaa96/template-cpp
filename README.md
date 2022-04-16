@@ -2,12 +2,12 @@
 
 ### Things to add
 - [x] Licence update
-- [ ] Conan support
-    - [ ] fmt 8.x.x
-    - [ ] spdlog 1.10.0
-    - [ ] gtest 1.10.0
+- [x] Conan support
+    - [x] fmt 8.x.x
+    - [x] spdlog 1.10.0
+    - [x] gtest 1.10.0
 - [ ] Appropriate Errors
-- [ ] Cpp20 support
+- [x] Cpp20 support
 - [ ] clang-tidy
 - [ ] [cppcheck](https://cppcheck.sourceforge.io/)
 - [ ] [ccache](https://ccache.dev/)
