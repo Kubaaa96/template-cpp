@@ -1,7 +1,7 @@
 # template-cpp
 
 ### Things to add
-- [ ] Licence update
+- [x] Licence update
 - [ ] Conan support
     - [ ] fmt 8.x.x
     - [ ] spdlog 1.10.0
