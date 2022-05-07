@@ -6,7 +6,9 @@
     - [x] fmt 8.x.x
     - [x] spdlog 1.10.0
     - [x] gtest 1.10.0
-- [ ] Appropriate Errors
+- [ ] Appropriate compiler flags GCC 
+- [ ] Appropriate compiler flags Clang
+- [ ] Appropriate compiler flags MSVC
 - [x] Cpp20 support
 - [ ] clang-tidy
 - [ ] [cppcheck](https://cppcheck.sourceforge.io/)
