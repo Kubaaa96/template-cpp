@@ -5,12 +5,12 @@
 - [x] Conan support
     - [x] fmt 8.x.x
     - [x] spdlog 1.10.0
-    - [x] gtest 1.10.0
-- [ ] Appropriate compiler flags GCC 
+    - [x] gtest 1.11.0
+- [x] Appropriate compiler flags GCC 
 - [ ] Appropriate compiler flags Clang
 - [ ] Appropriate compiler flags MSVC
 - [x] Cpp20 support
-- [ ] clang-tidy
+- [x] clang-tidy
 - [ ] [cppcheck](https://cppcheck.sourceforge.io/)
 - [ ] [ccache](https://ccache.dev/)
 - [ ] [Google test examples](https://google.github.io/googletest/)

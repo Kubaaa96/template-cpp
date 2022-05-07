@@ -22,7 +22,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/CMakeUtils.cmake)
 project_options(
         #        ENABLE_CACHE
         #        ${ENABLE_CPPCHECK}
-        #        ${ENABLE_CLANG_TIDY}
+        ENABLE_CLANG_TIDY
         #        ENABLE_VS_ANALYSIS
         ENABLE_CONAN
         # ENABLE_INTERPROCEDURAL_OPTIMIZATION
