@@ -1,5 +1,5 @@
 #include <fmt/core.h>
 
-int main(){
-    fmt::print("Main\n");
+int main() {
+    fmt::print("My template\n");
 }

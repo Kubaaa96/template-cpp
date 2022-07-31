@@ -4,4 +4,4 @@ gtest/1.11.0
 spdlog/1.10.0
 
 [generators]
-cmake
+cmake_find_package_multi
