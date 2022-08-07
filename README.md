@@ -23,6 +23,9 @@
 - [ ] Docker development environment example
 - [ ] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
 - [ ] github actions for three compilers (GCC, Clang, MSVC)
+  - [ ] GCC
+  - [ ] Clang
+  - [ ] MSVC
 - [ ] github actions for three platforms (Linux, Windows, Mac OS)
 - [ ] code coverage
 - [ ] Badges
