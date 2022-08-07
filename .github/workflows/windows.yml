@@ -25,4 +25,12 @@ jobs:
           }
     steps:
       - name: Print environment variables
-        run: echo First
+        run: env
+
+      - name: Print compiler version
+        env:
+          CC: ${{ matrix.CONFIG.CC }}
+          CXX: ${{ matrix.CONFIG.CXX }}
+        run: |
+          "$CC" --version
+          "$CXX" --version
