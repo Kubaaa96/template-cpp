@@ -18,23 +18,23 @@ jobs:
         CONFIG:
           - {
             BUILD_TYPE: Release,
-            CC: gcc-11,
-            CXX: g++-11
+            CC: gcc-10,
+            CXX: g++-10
           }
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-11,
-            CXX: g++-11
+            CC: gcc-10,
+            CXX: g++-10
           }
           - {
             BUILD_TYPE: Release,
-            CC: clang-14,
-            CXX: clang++-14
+            CC: clang-9,
+            CXX: clang++-9
           }
           - {
             BUILD_TYPE: Debug,
-            CC: clang-14,
-            CXX: clang++-14
+            CC: clang-9,
+            CXX: clang++-9
           }
     steps:
       - name: Print environment variables
