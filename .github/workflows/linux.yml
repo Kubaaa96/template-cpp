@@ -28,13 +28,13 @@ jobs:
           }
           - {
             BUILD_TYPE: Release,
-            CC: clang-9,
-            CXX: clang++-9
+            CC: clang-12,
+            CXX: clang++-12
           }
           - {
             BUILD_TYPE: Debug,
-            CC: clang-9,
-            CXX: clang++-9
+            CC: clang-12,
+            CXX: clang++-12
           }
     steps:
       - name: Print environment variables
