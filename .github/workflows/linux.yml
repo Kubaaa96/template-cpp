@@ -8,33 +8,31 @@ env:
 jobs:
   windows:
     name: Linux ( Ubuntu )
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
-      GENERATOR: "Visual Studio 17 2022"
-      ARCH: "x64"
       CMAKE_INSTALL_PREFIX: "${{ github.workspace }}\\install"
     strategy:
       matrix:
         CONFIG:
           - {
             BUILD_TYPE: Release,
-            CC: gcc-10,
-            CXX: g++-10
+            CC: gcc-11.2,
+            CXX: g++-11.2
           }
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-10,
-            CXX: g++-10
+            CC: gcc-11.2,
+            CXX: g++-11.2
           }
           - {
             BUILD_TYPE: Release,
-            CC: clang-12,
-            CXX: clang++-12
+            CC: clang-14,
+            CXX: clang++-14
           }
           - {
             BUILD_TYPE: Debug,
-            CC: clang-12,
-            CXX: clang++-12
+            CC: clang-14,
+            CXX: clang++-14
           }
     steps:
       - name: Print environment variables
