@@ -16,13 +16,13 @@ jobs:
         CONFIG:
           - {
             BUILD_TYPE: Release,
-            CC: gcc-11.2,
-            CXX: g++-11.2
+            CC: gcc-11,
+            CXX: g++-11
           }
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-11.2,
-            CXX: g++-11.2
+            CC: gcc-11,
+            CXX: g++-11
           }
           - {
             BUILD_TYPE: Release,
