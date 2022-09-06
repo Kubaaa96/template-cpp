@@ -179,3 +179,5 @@ _deps
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,clion,linux,cmake
 
+.vs*
+CMakeSettings.json

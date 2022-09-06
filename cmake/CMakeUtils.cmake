@@ -24,7 +24,14 @@ macro(initialize_conan)
 
     include(${CMAKE_BINARY_DIR}/conan/conan.cmake)
     set(CONAN_SYSTEM_INCLUDES ON)
-    if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+    if(MSVC)
+        conan_cmake_run(
+                CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                BASIC_SETUP
+                PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
+                BUILD missing
+        )
+    elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
         conan_cmake_run(
                 CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                 BASIC_SETUP
@@ -35,7 +42,7 @@ macro(initialize_conan)
         conan_cmake_run(
                 CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                 BASIC_SETUP
-                PROFILE default
+                PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_linux
                 BUILD missing
         )
     endif ()
