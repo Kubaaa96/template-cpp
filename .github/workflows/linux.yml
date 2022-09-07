@@ -43,6 +43,7 @@ jobs:
         run: |
           "$CC" --version
           "$CXX" --version
+
       - name: Install Conan
         run: pip install conan
 
@@ -58,10 +59,6 @@ jobs:
           mkdir build
           cd build
 
-      - name: debug
-        working-directory: project
-        run: ls -a
-
       - name: Configure project
         working-directory: project
         run: cmake -Bbuild
@@ -72,10 +69,6 @@ jobs:
       - name: Build project
         working-directory: project
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
-
-#      - name: make project
-#        working-directory: project
-#        run: make -j $(nproc --all) unit_tests
 
       - name: Run tests
         working-directory: project/build/tests
