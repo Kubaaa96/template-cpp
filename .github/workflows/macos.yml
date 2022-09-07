@@ -19,14 +19,14 @@ jobs:
 #          }
           - {
             BUILD_TYPE: Debug,
-            CC: '$(brew --prefix llvm@14)/bin/clang',
-            CXX: '$(brew --prefix llvm@14)/bin/clang++'
+            CC: $(brew --prefix llvm@14)/bin/clang,
+            CXX: $(brew --prefix llvm@14)/bin/clang++
           }
     steps:
       - name: Debug
         run: |
-          '$(brew --prefix llvm@14)/bin/clang' --version
-          '$(brew --prefix llvm@14)/bin/clang++' --version
+          $(brew --prefix llvm@14)/bin/clang --version
+          $(brew --prefix llvm@14)/bin/clang++ --version
 
       - name: Print compiler version
         env:
