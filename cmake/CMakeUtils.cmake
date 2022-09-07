@@ -24,29 +24,46 @@ macro(initialize_conan)
 
     include(${CMAKE_BINARY_DIR}/conan/conan.cmake)
     set(CONAN_SYSTEM_INCLUDES ON)
-    if(MSVC)
-        conan_cmake_run(
-                CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                BASIC_SETUP
-                PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
-                BUILD missing
-        )
-    elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-        conan_cmake_run(
-                CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                BASIC_SETUP
-                PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_linux
-                BUILD missing
-        )
-    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        conan_cmake_run(
-                CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                BASIC_SETUP
-                PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_linux
-                BUILD missing
-        )
+    if (NOT APPLE)
+        if (MSVC)
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
+                    BUILD missing
+            )
+        elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_linux
+                    BUILD missing
+            )
+        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_linux
+                    BUILD missing
+            )
+        endif ()
+    else ()
+        if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_macos
+                    BUILD missing
+            )
+        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_macos
+                    BUILD missing
+            )
+        endif ()
     endif ()
-
 
 endmacro()
 
