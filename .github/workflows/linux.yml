@@ -52,7 +52,7 @@ jobs:
 
       - name: Create project build directories
         working-directory: project
-        run: mkdir -p build | 
+        run: mkdir build | 
           cd build
 
       - name: debug
