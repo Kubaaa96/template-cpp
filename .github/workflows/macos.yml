@@ -12,11 +12,11 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-          - {
-            BUILD_TYPE: Debug,
-            CC: gcc-11,
-            CXX: g++-11
-          }
+#          - {
+#            BUILD_TYPE: Debug,
+#            CC: gcc-11,
+#            CXX: g++-11
+#          }
           - {
             BUILD_TYPE: Debug,
             CC: $(brew --prefix llvm)/bin/clang,
