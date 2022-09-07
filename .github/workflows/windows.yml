@@ -60,7 +60,7 @@ jobs:
 
       - name: Build project
         working-directory: project
-        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }} $(nproc --all)
+        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}
 
       - name: Run tests
         working-directory: project/build/tests
