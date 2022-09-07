@@ -3,7 +3,7 @@ os=Windows
 arch=x86_64
 compiler=Visual Studio
 compiler.version=17
-build_type=Release
+build_type=Debug
 [options]
 [tool_requires]
 [env]
