@@ -181,3 +181,4 @@ _deps
 
 .vs*
 CMakeSettings.json
+/coverage.*

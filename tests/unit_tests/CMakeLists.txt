@@ -8,4 +8,5 @@ endif ()
 
 create_test(ExampleTest
         SOURCES ExampleTest.cpp
+        ${CMAKE_SOURCE_DIR}/src/Example.cpp
         )

@@ -65,3 +65,7 @@ jobs:
       - name: Run tests
         working-directory: project/build/tests
         run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+
+      - name: Basic Coverage
+        working-directory: project
+        run: gcovr -r . --exclude-throw-branches --exclude-unreachable-branches
