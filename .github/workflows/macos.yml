@@ -24,7 +24,7 @@ jobs:
           }
     steps:
       - name: Debug
-        run: ls $(brew --prefix llvm)
+        run: ls $(brew --prefix llvm)/bin
 
       - name: Print compiler version
         env:
