@@ -23,6 +23,9 @@ jobs:
             CXX: $(brew --prefix llvm)/bin/clang++
           }
     steps:
+      - name: Debug
+        run: ls $(brew --prefix llvm)
+
       - name: Print compiler version
         env:
           CC: ${{ matrix.CONFIG.CC }}
