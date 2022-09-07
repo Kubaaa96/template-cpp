@@ -22,10 +22,10 @@
 - [ ] [Google test examples](https://google.github.io/googletest/)
 - [ ] Docker development environment example
 - [ ] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
-- [ ] github actions for three compilers (GCC, Clang, MSVC)
-  - [ ] GCC
-  - [ ] Clang
-  - [ ] MSVC
+- [x] github actions for three compilers (GCC, Clang, MSVC)
+  - [x] GCC
+  - [x] Clang
+  - [x] MSVC
 - [ ] github actions for three platforms (Linux, Windows, Mac OS)
 - [ ] code coverage
 - [ ] Badges
