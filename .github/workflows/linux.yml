@@ -50,10 +50,12 @@ jobs:
           path: project
           fetch-depth: 50
 
-      - name: Create project build directories
+      - name: Create project build directory
         working-directory: project
-        run: mkdir build | 
-          cd build
+        run: mkdir build
+
+      - name: Move to build directory
+        run: cd build
 
       - name: debug
         working-directory: project
