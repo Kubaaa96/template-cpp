@@ -17,9 +17,6 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-#          - {
-#            BUILD_TYPE: Release
-#          }
           - {
             BUILD_TYPE: Debug,
             CC: gcc-11,
@@ -34,8 +31,8 @@ jobs:
             BUILD_TYPE: Debug
           }
     steps:
-      - name: Install Conan
-        run: pip install conan
+      - name: Install dependencies
+        run: pip install conan gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2

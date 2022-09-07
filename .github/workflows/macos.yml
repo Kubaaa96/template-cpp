@@ -23,8 +23,8 @@ jobs:
             CXX: $(brew --prefix llvm@14)/bin/clang++
           }
     steps:
-      - name: Install Conan
-        run: pip3 install conan
+      - name: Install Dependencies
+        run: pip3 install conan gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2

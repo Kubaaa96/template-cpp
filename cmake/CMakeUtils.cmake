@@ -24,7 +24,9 @@ macro(initialize_conan)
 
     include(${CMAKE_BINARY_DIR}/conan/conan.cmake)
     set(CONAN_SYSTEM_INCLUDES ON)
-    if (NOT APPLE)
+
+
+    if (WIN32)
         if (MSVC)
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
@@ -33,6 +35,22 @@ macro(initialize_conan)
                     BUILD missing
             )
         elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_windows
+                    BUILD missing
+            )
+        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            conan_cmake_run(
+                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+                    BASIC_SETUP
+                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_windows
+                    BUILD missing
+            )
+        endif ()
+    elseif (UNIX)
+        if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                     BASIC_SETUP
@@ -47,7 +65,7 @@ macro(initialize_conan)
                     BUILD missing
             )
         endif ()
-    else ()
+    elseif (APPLE)
         if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
@@ -64,7 +82,6 @@ macro(initialize_conan)
             )
         endif ()
     endif ()
-
 endmacro()
 
 

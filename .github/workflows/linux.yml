@@ -41,8 +41,8 @@ jobs:
           "$CC" --version
           "$CXX" --version
 
-      - name: Install Conan
-        run: pip install conan
+      - name: Install dependencies
+        run: pip install conan gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2
