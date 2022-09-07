@@ -1,0 +1,27 @@
+name: MacOS
+on: [ push, pull_request ]
+
+env:
+  REPO: template-cpp
+  GITHUB_REPO: Kubaaa96/template-cpp
+
+jobs:
+  linux:
+    name: MacOS 12
+    runs-on: macos-12
+    strategy:
+      matrix:
+        CONFIG:
+          - {
+            BUILD_TYPE: Debug,
+            CC: gcc-11,
+            CXX: g++-11
+          }
+          - {
+            BUILD_TYPE: Debug,
+            CC: clang-14,
+            CXX: clang++-14
+          }
+    steps:
+      - name: Debug
+        run: env
