@@ -31,8 +31,8 @@ jobs:
           CC: ${{ matrix.CONFIG.CC }}
           CXX: ${{ matrix.CONFIG.CXX }}
         run: |
-          "$CC" --version
-          "$CXX" --version
+          $CC --version
+          $CXX --version
 
       - name: Install Conan
         run: pip install conan
