@@ -65,7 +65,7 @@ jobs:
         run: cmake -Bbuild
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" ..
+            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" .
 
       - name: Build and install IRE
         working-directory: project
