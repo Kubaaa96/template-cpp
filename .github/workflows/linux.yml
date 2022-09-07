@@ -6,11 +6,9 @@ env:
   GITHUB_REPO: Kubaaa96/template-cpp
 
 jobs:
-  windows:
+  linux:
     name: Linux ( Ubuntu )
     runs-on: ubuntu-22.04
-    env:
-      CMAKE_INSTALL_PREFIX: "${{ github.workspace }}\\install"
     strategy:
       matrix:
         CONFIG:
@@ -56,10 +54,13 @@ jobs:
         working-directory: project
         run: mkdir -p build
 
+      - name: debug
+        working-directory: project
+        run: ls -a
+
       - name: Configure project
         working-directory: project
-        run: ls |
-          cmake -Bbuild
+        run: cmake -Bbuild
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
             -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" ..
