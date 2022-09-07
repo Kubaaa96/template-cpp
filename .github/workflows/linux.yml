@@ -14,21 +14,21 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-          - {
-            BUILD_TYPE: Release,
-            CC: gcc-11,
-            CXX: g++-11
-          }
+#          - {
+#            BUILD_TYPE: Release,
+#            CC: gcc-11,
+#            CXX: g++-11
+#          }
           - {
             BUILD_TYPE: Debug,
             CC: gcc-11,
             CXX: g++-11
           }
-          - {
-            BUILD_TYPE: Release,
-            CC: clang-14,
-            CXX: clang++-14
-          }
+#          - {
+#            BUILD_TYPE: Release,
+#            CC: clang-14,
+#            CXX: clang++-14
+#          }
           - {
             BUILD_TYPE: Debug,
             CC: clang-14,
@@ -46,18 +46,27 @@ jobs:
           "$CC" --version
           "$CXX" --version
 
+      - name: Clone the git repo
+        uses: actions/checkout@v2
+        with:
+          path: project
+          fetch-depth: 50
+
       - name: Create project build directories
+        working-directory: project
         run: mkdir -p build
 
       - name: Configure project
+        working-directory: project
         run: cmake -Bbuild
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
             -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" ..
 
       - name: Build and install IRE
+        working-directory: project
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j2 $(nproc --all)
 
       - name: Run tests
-        working-directory: build/tests
+        working-directory: project/build/tests
         run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
