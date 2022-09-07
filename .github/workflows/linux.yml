@@ -69,9 +69,13 @@ jobs:
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
             -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" .
 
-      - name: Build and install IRE
+      - name: Build project
         working-directory: project
-        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j2 $(nproc --all)
+        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
+
+#      - name: make project
+#        working-directory: project
+#        run: make -j $(nproc --all) unit_tests
 
       - name: Run tests
         working-directory: project/build/tests
