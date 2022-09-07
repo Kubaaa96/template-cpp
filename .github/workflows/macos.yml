@@ -24,7 +24,7 @@ jobs:
           }
     steps:
       - name: Install Conan
-        run: pip install conan
+        run: pip3 install conan
 
       - name: Clone the git repo
         uses: actions/checkout@v2
