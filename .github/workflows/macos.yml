@@ -19,10 +19,18 @@ jobs:
           }
           - {
             BUILD_TYPE: Debug,
-            CC: clang-14,
-            CXX: clang++-14
+            CC: '$(brew --prefix llvm@14)/bin/clang',
+            CXX: '$(brew --prefix llvm@14)/bin/clang++'
           }
     steps:
+      - name: Print compiler version
+        env:
+          CC: ${{ matrix.CONFIG.CC }}
+          CXX: ${{ matrix.CONFIG.CXX }}
+        run: |
+          "$CC" --version
+          "$CXX" --version
+
       - name: Install Conan
         run: pip install conan
 
