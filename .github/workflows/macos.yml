@@ -12,30 +12,17 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-#          - {
-#            BUILD_TYPE: Debug,
-#            CC: gcc-11,
-#            CXX: g++-11
-#          }
+          - {
+            BUILD_TYPE: Debug,
+            CC: gcc-11,
+            CXX: g++-11
+          }
           - {
             BUILD_TYPE: Debug,
             CC: $(brew --prefix llvm@14)/bin/clang,
             CXX: $(brew --prefix llvm@14)/bin/clang++
           }
     steps:
-      - name: Debug
-        run: |
-          $(brew --prefix llvm@14)/bin/clang --version
-          $(brew --prefix llvm@14)/bin/clang++ --version
-
-      - name: Print compiler version
-        env:
-          CC: ${{ matrix.CONFIG.CC }}
-          CXX: ${{ matrix.CONFIG.CXX }}
-        run: |
-          $CC --version
-          $CXX --version
-
       - name: Install Conan
         run: pip install conan
 
