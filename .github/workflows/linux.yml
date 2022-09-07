@@ -52,10 +52,9 @@ jobs:
 
       - name: Create project build directory
         working-directory: project
-        run: mkdir build
-
-      - name: Move to build directory
-        run: cd build
+        run: |
+          mkdir build
+          cd build
 
       - name: debug
         working-directory: project
