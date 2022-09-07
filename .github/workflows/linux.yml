@@ -47,20 +47,17 @@ jobs:
           "$CXX" --version
 
       - name: Create project build directories
-        working-directory: project
-        run: mkdir -p install
+        run: mkdir -p build
 
       - name: Configure project
-        working-directory: project
         run: cmake . -Bbuild
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
             -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
 
       - name: Build and install IRE
-        working-directory: project
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j2 $(nproc --all)
 
       - name: Run tests
-        working-directory: project/build/tests
+        working-directory: build/tests
         run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
