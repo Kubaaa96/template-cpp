@@ -19,8 +19,8 @@ jobs:
 #          }
           - {
             BUILD_TYPE: Debug,
-            CC: $(brew --prefix llvm)/bin/clang,
-            CXX: $(brew --prefix llvm)/bin/clang++
+            CC: '$(brew --prefix llvm)/bin/clang',
+            CXX: '$(brew --prefix llvm)/bin/clang++'
           }
     steps:
       - name: Debug
