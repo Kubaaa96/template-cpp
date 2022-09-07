@@ -24,7 +24,7 @@ jobs:
           }
     steps:
       - name: Debug
-        run: ls $(brew --prefix llvm)/bin/clang --version
+        run: $(brew --prefix llvm)/bin/clang --version
 
       - name: Print compiler version
         env:
