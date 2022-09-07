@@ -33,9 +33,6 @@ jobs:
             CXX: clang++-14
           }
     steps:
-      - name: Print environment variables
-        run: env
-
       - name: Print compiler version
         env:
           CC: ${{ matrix.CONFIG.CC }}

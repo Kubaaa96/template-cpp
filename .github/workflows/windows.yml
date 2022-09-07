@@ -24,9 +24,6 @@ jobs:
             BUILD_TYPE: Debug
           }
     steps:
-      - name: Print environment variables
-        run: env
-
       - name: Install Conan
         run: pip install conan
 
