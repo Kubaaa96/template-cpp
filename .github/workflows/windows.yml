@@ -17,8 +17,18 @@ jobs:
     strategy:
       matrix:
         CONFIG:
+#          - {
+#            BUILD_TYPE: Release
+#          }
           - {
-            BUILD_TYPE: Release
+            BUILD_TYPE: Debug,
+            CC: gcc-11,
+            CXX: g++-11
+          }
+          - {
+            BUILD_TYPE: Debug,
+            CC: clang-14,
+            CXX: clang++-14
           }
           - {
             BUILD_TYPE: Debug
@@ -41,14 +51,16 @@ jobs:
 
       - name: Configure project
         working-directory: project
-        run: cmake -Bbuild
+        run: cmake . -Bbuild
+          -G "${env:GENERATOR}"
+          -A "${env:ARCH}"
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-          -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}" .
+          -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
 
       - name: Build project
         working-directory: project
-        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
+        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }} $(nproc --all)
 
       - name: Run tests
         working-directory: project/build/tests
