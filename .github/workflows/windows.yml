@@ -51,7 +51,7 @@ jobs:
       - name: Configure project
         working-directory: project
         run:
-          IF ("${{ matrix.CONFIG.GENERATOR }}" == "Visual Studio 17 2022")
+          IF ("${{ matrix.CONFIG.GENERATOR }}" -eq "Visual Studio 17 2022")
           {
           cmake . -Bbuild
             -G "${{ matrix.CONFIG.GENERATOR }}"
