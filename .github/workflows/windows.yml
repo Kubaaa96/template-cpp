@@ -51,19 +51,19 @@ jobs:
       - name: Configure project
         working-directory: project
         run:
-          if [[ ${{ matrix.CONFIG.GENERATOR }} == "Visual Studio 17 2022" ]]; then
-          cmake . -Bbuild
+          IF ${{ matrix.CONFIG.GENERATOR }} == "Visual Studio 17 2022"
+          (cmake . -Bbuild
             -G "${{ matrix.CONFIG.GENERATOR }}"
             -A x64
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"; else           
-          cmake . -Bbuild
+            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}") 
+          else           
+          (cmake . -Bbuild
             -G "${{ matrix.CONFIG.GENERATOR }}"
             -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
             -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}";
-          fi
+            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}")
 
       - name: Build project
         working-directory: project
