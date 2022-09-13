@@ -35,23 +35,6 @@ macro(initialize_conan)
                     PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
                     BUILD missing
             )
-        elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-            message(STATUS OUR_CLANG)
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_windows
-                    BUILD missing
-            )
-        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-            message(STATUS OUR_GCC)
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_windows
-                    BUILD missing
-            )
-        endif ()
     elseif (UNIX AND NOT APPLE)
         if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
             conan_cmake_run(

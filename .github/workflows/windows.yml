@@ -13,19 +13,6 @@ jobs:
       matrix:
         CONFIG:
           - {
-            GENERATOR: "MinGW Makefiles",
-            BUILD_TYPE: Debug,
-            CC: gcc,
-            CXX: g++
-          }
-          - {
-            GENERATOR: "MinGW Makefiles",
-            BUILD_TYPE: Debug,
-            CC: clang,
-            CXX: clang++
-          }
-          - {
-            GENERATOR: "Visual Studio 17 2022",
             BUILD_TYPE: Debug,
           }
     steps:
@@ -50,22 +37,12 @@ jobs:
 
       - name: Configure project
         working-directory: project
-        run:
-          IF ("${{ matrix.CONFIG.GENERATOR }}" -eq "Visual Studio 17 2022")
-          {
-          cmake . -Bbuild
-            -G "${{ matrix.CONFIG.GENERATOR }}"
-            -A x64
-            -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
-            -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"} 
-          else           
-          {cmake . -Bbuild
-            -G "${{ matrix.CONFIG.GENERATOR }}"
-            -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
-            -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-            -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"}
-
+        run: cmake . -Bbuild
+              -G "Visual Studio 17 2022"
+              -A x64
+              -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
+              -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
+              -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"}
       - name: Build project
         working-directory: project
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}
@@ -73,8 +50,3 @@ jobs:
       - name: Run tests
         working-directory: project/build/tests
         run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
-
-      - name: Basic Coverage
-        working-directory: project
-        run: | 
-          gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches

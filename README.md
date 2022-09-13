@@ -27,9 +27,11 @@
   - [x] GCC
   - [x] Clang
   - [x] MSVC
-- [ ] github actions for three platforms (Linux, Windows, Mac OS)
-- [x] Basic code coverage
+- [x] github actions for three platforms (Linux, Windows, Mac OS)
+- [ ] GCC and clang on windows
+- [x] Basic code coverage for GCC 
 - [ ] Advanced code coverage based on unit and integrations tests and combined coverage
+- [ ] Coverage for different compilers (MSVC and Clang)
 - [ ] Badges
     - [ ] Coverage at unit tests
     - [ ] Coverage at integration tests

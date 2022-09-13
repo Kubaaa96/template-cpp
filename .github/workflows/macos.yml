@@ -55,4 +55,9 @@ jobs:
 
       - name: Basic Coverage
         working-directory: project
-        run: gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches
+        run:
+          if [[ "${{ matrix.CONFIG.CC }}" == "gcc-11" ]]; then
+            gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches;
+          else
+            echo "No coverage for anything different than GCC";
+          fi
