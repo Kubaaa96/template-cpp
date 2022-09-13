@@ -49,7 +49,6 @@ jobs:
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
-#          -G "${env:GENERATOR}"
           -A "${env:ARCH}"
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
