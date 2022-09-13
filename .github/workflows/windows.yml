@@ -15,14 +15,12 @@ jobs:
           - {
             GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
-            ARCH: "x64",
             CC: gcc,
             CXX: g++
           }
           - {
             GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
-            ARCH: "x64",
             CC: clang,
             CXX: clang++
           }
