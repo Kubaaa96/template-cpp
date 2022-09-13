@@ -44,6 +44,10 @@ jobs:
           mkdir build
           cd build
 
+      - name: DEBUG
+        working-directory: project
+        run: clang++ --version
+
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
