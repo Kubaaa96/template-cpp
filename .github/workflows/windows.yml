@@ -1,0 +1,52 @@
+name: Windows
+on: [ push, pull_request ]
+
+env:
+  REPO: template-cpp
+  GITHUB_REPO: Kubaaa96/template-cpp
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        CONFIG:
+          - {
+            BUILD_TYPE: Debug,
+          }
+    steps:
+      - name: Install dependencies
+        run: pip install conan gcovr
+
+      - name: Clone the git repo
+        uses: actions/checkout@v2
+        with:
+          path: project
+          fetch-depth: 50
+
+      - name: Create project build directory
+        working-directory: project
+        run: |
+          mkdir build
+          cd build
+
+      - name: DEBUG
+        working-directory: project
+        run: clang++ --version
+
+      - name: Configure project
+        working-directory: project
+        run: cmake . -Bbuild
+              -G "Visual Studio 17 2022"
+              -A x64
+              -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
+              -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
+              -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
+      - name: Build project
+        working-directory: project
+        run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}
+
+      - name: Run tests
+        working-directory: project/build/tests
+        run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540

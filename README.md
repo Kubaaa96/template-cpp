@@ -19,12 +19,19 @@
 - [x] clang-tidy
 - [x] [cppcheck](https://cppcheck.sourceforge.io/)
 - [x] [ccache](https://ccache.dev/)
-- [ ] [Google test examples](https://google.github.io/googletest/)
+- [x] [Google test examples](https://google.github.io/googletest/)
+- [ ] Think about and add Relase builds in CI/CD
 - [ ] Docker development environment example
 - [ ] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
-- [ ] github actions for three compilers (GCC, Clang, MSVC)
-- [ ] github actions for three platforms (Linux, Windows, Mac OS)
-- [ ] code coverage
+- [x] github actions for three compilers (GCC, Clang, MSVC)
+  - [x] GCC
+  - [x] Clang
+  - [x] MSVC
+- [x] github actions for three platforms (Linux, Windows, Mac OS)
+- [ ] GCC and clang on windows
+- [x] Basic code coverage for GCC 
+- [ ] Advanced code coverage based on unit and integrations tests and combined coverage
+- [ ] Coverage for different compilers (MSVC and Clang)
 - [ ] Badges
     - [ ] Coverage at unit tests
     - [ ] Coverage at integration tests
