@@ -35,6 +35,7 @@ macro(initialize_conan)
                     PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
                     BUILD missing
             )
+        endif()
     elseif (UNIX AND NOT APPLE)
         if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
             conan_cmake_run(
