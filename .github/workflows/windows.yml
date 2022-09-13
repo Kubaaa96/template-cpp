@@ -48,8 +48,8 @@ jobs:
       - name: Debug
         working-directory: project
         run: |
-          g++-11 --version
-          clang-14 --version
+          g++ --version
+          clang --version
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
