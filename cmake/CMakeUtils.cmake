@@ -52,7 +52,7 @@ macro(initialize_conan)
                     BUILD missing
             )
         endif ()
-    elseif (UNIX)
+    elseif (UNIX AND NOT APPLE)
         if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt

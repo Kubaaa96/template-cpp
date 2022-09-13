@@ -19,13 +19,13 @@ jobs:
         CONFIG:
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-11,
-            CXX: g++-11
+            CC: gcc,
+            CXX: g++
           }
           - {
             BUILD_TYPE: Debug,
-            CC: clang-14,
-            CXX: clang++-14
+            CC: clang,
+            CXX: clang++
           }
           - {
             BUILD_TYPE: Debug
@@ -45,11 +45,7 @@ jobs:
         run: |
           mkdir build
           cd build
-      - name: Debug
-        working-directory: project
-        run: |
-          g++ --version
-          clang --version
+
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
