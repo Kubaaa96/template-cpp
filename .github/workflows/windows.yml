@@ -42,7 +42,7 @@ jobs:
               -A x64
               -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
               -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-              -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"}
+              -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
       - name: Build project
         working-directory: project
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}
