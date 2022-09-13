@@ -15,18 +15,21 @@ jobs:
           - {
             GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
+            ARCH: "x64",
             CC: gcc,
             CXX: g++
           }
           - {
             GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
+            ARCH: "x64",
             CC: clang,
             CXX: clang++
           }
           - {
-            GENERATOR: "Visual Studio 17 2022 ",
-            BUILD_TYPE: Debug
+            GENERATOR: "Visual Studio 17 2022",
+            BUILD_TYPE: Debug,
+            ARCH: "x64"
           }
     steps:
       - name: Install dependencies
@@ -52,6 +55,7 @@ jobs:
         working-directory: project
         run: cmake . -Bbuild
           -G "${{ matrix.CONFIG.GENERATOR }}"
+          -A "${{ matrix.CONFIG.ARCH }}"
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
           -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
