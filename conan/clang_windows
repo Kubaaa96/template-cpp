@@ -10,3 +10,5 @@ build_type=Debug
 [options]
 [tool_requires]
 [env]
+CC=C:\Program Files\LLVM\bin\clang
+CXX=C:\Program Files\LLVM\bin\clang++
