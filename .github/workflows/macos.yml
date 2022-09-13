@@ -55,4 +55,4 @@ jobs:
 
       - name: Basic Coverage
         working-directory: project
-        run: gcovr -r . --exclude-throw-branches --exclude-unreachable-branches
+        run: gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches

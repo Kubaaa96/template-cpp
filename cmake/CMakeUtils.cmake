@@ -28,6 +28,7 @@ macro(initialize_conan)
 
     if (WIN32)
         if (MSVC)
+            message(STATUS OUR_MSVC)
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                     BASIC_SETUP
@@ -35,6 +36,7 @@ macro(initialize_conan)
                     BUILD missing
             )
         elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+            message(STATUS OUR_CLANG)
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                     BASIC_SETUP
@@ -42,6 +44,7 @@ macro(initialize_conan)
                     BUILD missing
             )
         elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+            message(STATUS OUR_GCC)
             conan_cmake_run(
                     CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
                     BASIC_SETUP
