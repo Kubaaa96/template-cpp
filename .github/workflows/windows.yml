@@ -10,10 +10,7 @@ jobs:
     name: Windows
     runs-on: windows-latest
     env:
-      VCPKG_DEFAULT_TRIPLET: x64-windows
-#      GENERATOR: "Visual Studio 17 2022"
-      ARCH: "x64"
-      CMAKE_INSTALL_PREFIX: "${{ github.workspace }}\\install"
+      GENERATOR: "mingw32-make"
     strategy:
       matrix:
         CONFIG:
@@ -49,7 +46,7 @@ jobs:
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
-          -A "${env:ARCH}"
+          -G "${{env:GENERATOR}}"
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
           -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
