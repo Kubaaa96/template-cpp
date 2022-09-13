@@ -13,16 +13,19 @@ jobs:
       matrix:
         CONFIG:
           - {
+            GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
             CC: gcc,
             CXX: g++
           }
           - {
+            GENERATOR: "MinGW Makefiles",
             BUILD_TYPE: Debug,
             CC: clang,
             CXX: clang++
           }
           - {
+            GENERATOR: "Visual Studio 17 2022 ",
             BUILD_TYPE: Debug
           }
     steps:
@@ -44,7 +47,7 @@ jobs:
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
-          -G mingw32-make
+          -G "${{ matrix.CONFIG.GENERATOR }}"
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
           -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
