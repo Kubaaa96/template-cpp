@@ -9,8 +9,6 @@ jobs:
   windows:
     name: Windows
     runs-on: windows-latest
-    env:
-      GENERATOR: "mingw32-make"
     strategy:
       matrix:
         CONFIG:
@@ -46,7 +44,7 @@ jobs:
       - name: Configure project
         working-directory: project
         run: cmake . -Bbuild
-          -G "${{env:GENERATOR}}"
+          -G mingw32-make
           -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
           -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
           -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
