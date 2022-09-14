@@ -22,7 +22,7 @@
 - [x] [Google test examples](https://google.github.io/googletest/)
 - [ ] Think about and add Relase builds in CI/CD
 - [ ] Docker development environment example
-- [ ] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
+- [x] [Doxygen documentation setup](https://www.doxygen.nl/index.html)
 - [x] github actions for three compilers (GCC, Clang, MSVC)
   - [x] GCC
   - [x] Clang
@@ -39,6 +39,8 @@
     - [ ] code quality c/c++
     - [ ] All compilers and all platforms
 - [ ] Docs folder
+  - [ ] Doxygen tutorial page
+  - [ ] 
 - [ ] [Fuzz testing with LibFuzzer](https://llvm.org/docs/LibFuzzer.html)
 - [ ] Sanitizers
     - [ ] [Address](https://github.com/google/sanitizers/wiki/AddressSanitizer) or [HWASAN](https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html)
@@ -52,3 +54,11 @@
 Invalid setting '14' is not a valid 'settings.compiler.version' value.
 
 If you see above warning. Just update your conan settings like [this](https://docs.conan.io/en/1.36/extending/custom_settings.html#custom-settings)
+
+### Requirements
+
+- Graphviz for doxygen dot
+Linux: 
+`sudo apt install graphviz`
+Others:
+[GraphViz](https://www.graphviz.org/download/)

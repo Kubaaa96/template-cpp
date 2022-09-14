@@ -15,6 +15,8 @@ add_executable(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/src/main.cpp)
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${CONAN_LIBS})
 
+include(cmake/Doxygen.cmake)
+
 if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")
     message("NOT RELEASE mode - enable testing")
     enable_testing()
