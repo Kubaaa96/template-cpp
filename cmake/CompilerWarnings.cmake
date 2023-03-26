@@ -41,6 +41,7 @@ function(set_project_warnings TARGET_NAME)
 
     set(CLANG_WARNINGS
             -Wall
+            -Wno-dev
             -Wextra  # reasonable and standard
             -Wshadow # warn the user if a variable declaration shadows one from a
             # parent context
@@ -90,6 +91,7 @@ function(set_project_warnings TARGET_NAME)
     if(${PROJECT_NAME}_BUILD_HEADERS_ONLY)
         target_compile_options(${TARGET_NAME} INTERFACE ${PROJECT_WARNINGS})
     else()
+        message("WOW")
         target_compile_options(${TARGET_NAME} PUBLIC ${PROJECT_WARNINGS})
     endif()
 

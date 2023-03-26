@@ -1,5 +1,5 @@
 [requires]
-fmt/8.1.1
+fmt/9.1.0
 gtest/1.11.0
 spdlog/1.10.0
 doxygen/1.9.4

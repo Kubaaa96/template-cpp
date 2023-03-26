@@ -1,4 +1,4 @@
-FROM gcc:11.3.0
+FROM gcc_12_2_clang_15_cmake_3_25_2_python_3_11:0.1.0
 
 RUN apt-get update && \
     apt-get install -y ssh rsync gdb nano
