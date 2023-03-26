@@ -24,7 +24,7 @@ jobs:
           }
     steps:
       - name: Install Dependencies
-        run: pip3 install conan gcovr
+        run: pip3 install conan==1.59.0 gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2
