@@ -24,51 +24,11 @@ macro(initialize_conan)
 
     include(${CMAKE_BINARY_DIR}/conan/conan.cmake)
     set(CONAN_SYSTEM_INCLUDES ON)
-
-
-    if (WIN32)
-        if (MSVC)
-            message(STATUS OUR_MSVC)
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/msvc_windows
-                    BUILD missing
-            )
-        endif()
-    elseif (UNIX AND NOT APPLE)
-        if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_linux
-                    BUILD missing
-            )
-        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_linux
-                    BUILD missing
-            )
-        endif ()
-    elseif (APPLE)
-        if (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/clang_macos
-                    BUILD missing
-            )
-        elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-            conan_cmake_run(
-                    CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
-                    BASIC_SETUP
-                    PROFILE ${CMAKE_SOURCE_DIR}/conan/gcc_macos
-                    BUILD missing
-            )
-        endif ()
-    endif ()
+    conan_cmake_run(
+            CONANFILE ${CMAKE_SOURCE_DIR}/conanfile.txt
+            BASIC_SETUP
+            BUILD missing
+    )
 endmacro()
 
 

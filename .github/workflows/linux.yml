@@ -34,7 +34,7 @@ jobs:
           }
     steps:
       - name: Install dependencies
-        run: pip install conan gcovr
+        run: pip install conan==1.59.0 gcovr
 
       - name: Clone the git repo
         uses: actions/checkout@v2
@@ -66,7 +66,7 @@ jobs:
       - name: Basic Coverage
         working-directory: project
         run:
-          if [[ "${{ matrix.CONFIG.CC }}" == "gcc-11" ]]; then    
+          if [[ "${{ matrix.CONFIG.CC }}" == "gcc" ]]; then    
             gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches;
           else
             echo "No coverage for anything different than GCC";

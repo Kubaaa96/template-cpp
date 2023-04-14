@@ -41,6 +41,7 @@ function(set_project_warnings TARGET_NAME)
 
     set(CLANG_WARNINGS
             -Wall
+            -Wno-dev
             -Wextra  # reasonable and standard
             -Wshadow # warn the user if a variable declaration shadows one from a
             # parent context

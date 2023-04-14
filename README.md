@@ -40,7 +40,7 @@
     - [ ] All compilers and all platforms
 - [ ] Docs folder
   - [ ] Doxygen tutorial page
-  - [ ] 
+  - [ ] Docker development environment
 - [ ] [Fuzz testing with LibFuzzer](https://llvm.org/docs/LibFuzzer.html)
 - [ ] Sanitizers
     - [ ] [Address](https://github.com/google/sanitizers/wiki/AddressSanitizer) or [HWASAN](https://clang.llvm.org/docs/HardwareAssistedAddressSanitizerDesign.html)
@@ -58,7 +58,9 @@ If you see above warning. Just update your conan settings like [this](https://do
 ### Requirements
 
 - Graphviz for doxygen dot
+
 Linux: 
 `sudo apt install graphviz`
+
 Others:
 [GraphViz](https://www.graphviz.org/download/)
