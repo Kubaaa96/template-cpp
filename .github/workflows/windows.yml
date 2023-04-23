@@ -52,7 +52,6 @@ jobs:
         working-directory: project
         run: |
           mkdir build
-          cd build
 
       - name: DEBUG clang
         working-directory: project
@@ -64,12 +63,23 @@ jobs:
 
       - name: Configure project
         working-directory: project
-        run: cmake . -Bbuild
-              -G "Visual Studio 17 2022"
-              -A x64
-              -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
-              -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
-              -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
+        run: 
+          if ([string]::IsNullOrEmpty("${{ matrix.CONFIG.CC }}"))
+          {
+            cmake . -Bbuild
+                -G "Visual Studio 17 2022"
+                -A x64
+                -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
+                -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
+                -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
+          }
+          else
+          {
+            cmake . -Bbuild
+                -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
+                -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
+                -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
+          }
 
       - name: Build project
         working-directory: project
@@ -86,7 +96,7 @@ jobs:
           { 
             Write-host "No test on Release Build type"
           }
- 
+
       - name: Basic Coverage
         working-directory: project
         run:
