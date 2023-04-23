@@ -41,14 +41,11 @@ jobs:
         with:
           path: project
           fetch-depth: 50
-      - name: DEBUG clang
-        working-directory: project
-        run: gcovr -v
+
       - name: Create project build directory
         working-directory: project
         run: |
           mkdir build
-          cd build
 
       - name: Configure project
         working-directory: project

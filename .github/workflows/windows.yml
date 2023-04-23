@@ -53,14 +53,6 @@ jobs:
         run: |
           mkdir build
 
-      - name: DEBUG clang
-        working-directory: project
-        run: clang++ --version
-
-      - name: DEBUG gcc
-        working-directory: project
-        run: gcc --version
-
       - name: Configure project
         working-directory: project
         run: 
@@ -76,6 +68,7 @@ jobs:
           else
           {
             cmake . -Bbuild
+                -G "mingw32-make"
                 -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
                 -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
                 -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
@@ -103,6 +96,7 @@ jobs:
           if ("${{ matrix.CONFIG.CC }}" -eq "gcc-12" -and "${{matrix.CONFIG.BUILD_TYPE}}" -eq "Debug") 
           { 
             gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches
+          }
           else 
           { 
             Write-host "No coverage for anything different than GCC"
