@@ -12,21 +12,21 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-#          - {
-#            BUILD_TYPE: Release,
-#            CC: gcc-11,
-#            CXX: g++-11
-#          }
+          - {
+            BUILD_TYPE: Release,
+            CC: gcc-12,
+            CXX: g++-12
+          }
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-11,
-            CXX: g++-11
+            CC: gcc-12,
+            CXX: g++-12
           }
-#          - {
-#            BUILD_TYPE: Release,
-#            CC: clang-14,
-#            CXX: clang++-14
-#          }
+          - {
+            BUILD_TYPE: Release,
+            CC: clang-14,
+            CXX: clang++-14
+          }
           - {
             BUILD_TYPE: Debug,
             CC: clang-14,

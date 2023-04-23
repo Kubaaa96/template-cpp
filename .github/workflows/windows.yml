@@ -15,6 +15,9 @@ jobs:
           - {
             BUILD_TYPE: Debug,
           }
+          - {
+            BUILD_TYPE: Release,
+          }
     steps:
       - name: Install dependencies
         run: pip install conan==1.59.0 gcovr
@@ -31,9 +34,13 @@ jobs:
           mkdir build
           cd build
 
-      - name: DEBUG
+      - name: DEBUG clang
         working-directory: project
         run: clang++ --version
+
+      - name: DEBUG gcc
+        working-directory: project
+        run: gcc++ --version
 
       - name: Configure project
         working-directory: project
@@ -49,4 +56,9 @@ jobs:
 
       - name: Run tests
         working-directory: project/build/tests
-        run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+        run: 
+          if [[ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]]; then    
+           ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+          else
+            echo "No test on Release Build type";
+          fi
