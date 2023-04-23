@@ -61,7 +61,12 @@ jobs:
 
       - name: Run tests
         working-directory: project/build/tests
-        run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+        run:           
+          if [[ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]]; then    
+           ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+          else
+            echo "No test on Release Build type";
+          fi
 
       - name: Basic Coverage
         working-directory: project

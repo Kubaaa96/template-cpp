@@ -40,7 +40,7 @@ jobs:
 
       - name: DEBUG gcc
         working-directory: project
-        run: gcc++ --version
+        run: gcc --version
 
       - name: Configure project
         working-directory: project
