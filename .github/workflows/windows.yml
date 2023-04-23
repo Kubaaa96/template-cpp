@@ -78,11 +78,22 @@ jobs:
       - name: Run tests
         working-directory: project/build
         run: 
-          cd tests;
           if ("${{ matrix.CONFIG.BUILD_TYPE }}" -eq "Debug") 
           { 
+            cd tests;
             ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540 } 
           else 
           { 
             Write-host "No test on Release Build type"
+          }
+ 
+      - name: Basic Coverage
+        working-directory: project
+        run:
+          if ("${{ matrix.CONFIG.CC }}" -eq "gcc-12" -and "${{matrix.CONFIG.BUILD_TYPE}}" -eq "Debug") 
+          { 
+            gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches
+          else 
+          { 
+            Write-host "No coverage for anything different than GCC"
           }

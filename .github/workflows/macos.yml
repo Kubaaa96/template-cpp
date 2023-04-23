@@ -18,7 +18,17 @@ jobs:
             CXX: g++-12
           }
           - {
+            BUILD_TYPE: Release,
+            CC: gcc-12,
+            CXX: g++-12
+          }
+          - {
             BUILD_TYPE: Debug,
+            CC: $(brew --prefix llvm@15)/bin/clang,
+            CXX: $(brew --prefix llvm@15)/bin/clang++
+          }
+          - {
+            BUILD_TYPE: Release,
             CC: $(brew --prefix llvm@15)/bin/clang,
             CXX: $(brew --prefix llvm@15)/bin/clang++
           }
@@ -50,13 +60,18 @@ jobs:
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
 
       - name: Run tests
-        working-directory: project/build/tests
-        run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+        working-directory: project/build
+        run:           
+          if [ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]; then 
+           cd tests && ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540;
+          else
+            echo "No test on Release Build type";
+          fi
 
       - name: Basic Coverage
         working-directory: project
         run:
-          if [[ "${{ matrix.CONFIG.CC }}" == "gcc-12" ]]; then
+          if [ "${{ matrix.CONFIG.CC }}" == "gcc-12" ] && [ "${{matrix.CONFIG.BUILD_TYPE}}" == "Debug" ]; then    
             gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches;
           else
             echo "No coverage for anything different than GCC";
