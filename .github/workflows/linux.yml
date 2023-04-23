@@ -60,10 +60,10 @@ jobs:
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
 
       - name: Run tests
-        working-directory: project/build/tests
+        working-directory: project/build
         run:           
-          if [[ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]]; then    
-           ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
+          if [ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]; then 
+           cd tests && ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540;
           else
             echo "No test on Release Build type";
           fi
@@ -71,7 +71,7 @@ jobs:
       - name: Basic Coverage
         working-directory: project
         run:
-          if [[ "${{ matrix.CONFIG.CC }}" == "gcc" ]]; then    
+          if [ "${{ matrix.CONFIG.CC }}" == "gcc" ] && [ "${{matrix.CONFIG.BUILD_TYPE}}" == "Debug" ]; then    
             gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches;
           else
             echo "No coverage for anything different than GCC";
