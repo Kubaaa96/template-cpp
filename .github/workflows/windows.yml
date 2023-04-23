@@ -68,7 +68,7 @@ jobs:
           else
           {
             cmake . -Bbuild
-                -G "mingw32-make"
+                -G "MinGW Makefiles"
                 -DCMAKE_BUILD_TYPE="${{ matrix.CONFIG.BUILD_TYPE }}"
                 -DCMAKE_C_COMPILER="${{ matrix.CONFIG.CC }}"
                 -DCMAKE_CXX_COMPILER="${{ matrix.CONFIG.CXX }}"
