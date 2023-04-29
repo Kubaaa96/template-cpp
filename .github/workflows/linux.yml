@@ -12,21 +12,21 @@ jobs:
     strategy:
       matrix:
         CONFIG:
-#          - {
-#            BUILD_TYPE: Release,
-#            CC: gcc-11,
-#            CXX: g++-11
-#          }
+          - {
+            BUILD_TYPE: Release,
+            CC: gcc-12,
+            CXX: g++-12
+          }
           - {
             BUILD_TYPE: Debug,
-            CC: gcc-11,
-            CXX: g++-11
+            CC: gcc-12,
+            CXX: g++-12
           }
-#          - {
-#            BUILD_TYPE: Release,
-#            CC: clang-14,
-#            CXX: clang++-14
-#          }
+          - {
+            BUILD_TYPE: Release,
+            CC: clang-14,
+            CXX: clang++-14
+          }
           - {
             BUILD_TYPE: Debug,
             CC: clang-14,
@@ -46,7 +46,6 @@ jobs:
         working-directory: project
         run: |
           mkdir build
-          cd build
 
       - name: Configure project
         working-directory: project
@@ -60,14 +59,10 @@ jobs:
         run: cmake --build ./build --config ${{ matrix.CONFIG.BUILD_TYPE }}  -- -j $(nproc --all)
 
       - name: Run tests
-        working-directory: project/build/tests
-        run: ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540
-
-      - name: Basic Coverage
-        working-directory: project
-        run:
-          if [[ "${{ matrix.CONFIG.CC }}" == "gcc" ]]; then    
-            gcovr -r . -f src/ -f include/ -e tests/ --exclude-throw-branches --exclude-unreachable-branches;
+        working-directory: project/build
+        run:           
+          if [ "${{ matrix.CONFIG.BUILD_TYPE }}" == "Debug" ]; then 
+           cd tests && ctest -C ${{ matrix.CONFIG.BUILD_TYPE }} --output-on-failure --timeout 540;
           else
-            echo "No coverage for anything different than GCC";
+            echo "No test on Release Build type";
           fi
